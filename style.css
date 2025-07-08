@@ -1,0 +1,225 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    box-sizing: border-box;
+}
+body {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    background: #eaf3f2;
+    width: 300px;
+    height: 700px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.main {
+    width: 90%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.im {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1; /* Pour que l'image soit en arrière-plan */
+    filter: blur(6px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.img{
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    color: #fff;
+    overflow: hidden;
+}
+
+.head, .container, footer{
+    width: 90%;
+}
+
+header{
+    height: 42%;
+    width: 100%;
+}
+.tete{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 8px;
+    align-items: center;
+    
+}
+.head{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+.title{
+    height: 80%;
+    width: 100%;
+}
+
+.info{
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
+    justify-content: space-between;
+}
+.description{
+    width: 40%;
+}
+.slide_bar {
+    border-radius: 10px;
+    background: #e0e0e0;
+    padding: 0;       /* retire le padding pour l'alignement */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: inset 8px 8px 16px #bebebe,
+                inset -8px -8px 16px #ffffff;
+}
+.slide_bar.center {
+    width: 100%;
+    height: 15%;
+    display: flex;
+    overflow-x: auto;
+    align-items: center;
+    background: rgb(243,242,255);
+}
+.slide_bar.center::-webkit-scrollbar{
+    width: 0;
+    height: 0;
+}
+.center{
+    max-width: 100%;
+    min-width: 50%;
+    height: 100%;
+    /* line-height: 110px; */
+    text-align: center;
+    margin-right: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.border {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    border-radius: 1.25rem;
+    box-shadow: 11px 13px 20px #dbdbdb,
+                -11px -13px 20px white;
+}
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+li {
+    background: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    list-style: none;
+    padding: 1rem;
+    margin: 0.2rem;
+    border-radius: 1.25rem;
+    box-shadow: 11px 13px 20px #dbdbdb,
+                -11px -13px 20px white;
+    color: rgb(49,0,128);
+    transition: box-shadow 1s ease, color 0.5s ease;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.80rem;
+}
+
+li:hover{
+    color: rgb(255, 30, 80);
+    box-shadow: 11px 13px 20px #dbdbdb,
+                -11px -13px 20px white inset;
+}
+li:active .far{
+    font-size: 3rem;
+}
+li:active .fas{
+    font-size: 3rem;
+}
+.far, .fas{
+    font-size: 2rem;
+    /* margin-right: 0.5rem;
+    transition: font-size 0.3s ease; */
+}
+footer{
+    height: 8%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+.container {
+    background: #e0e0e088;
+    height: 50%;
+    border: 2px solid transparent ;
+    box-shadow: 
+    0 3.4px 4.6px rgba(0, 0, 0, 0.082),
+    0 9.5px 12.8px rgba(0, 0, 0, 0.121),
+    0 22.9px 30.8px rgba(0, 0, 0, 0.156),
+    0 76px 102px rgba(0, 0, 0, 0.21);   
+    border-radius: 20px;
+}               
+.button{
+    background: #e0e0e0;
+    border-radius: 12px;
+    box-shadow: 8px 8px 16px #bebebe,
+                -8px -8px 16px #ffffff;
+    padding: 20px 40px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    width: 40%;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: rgb(49,0,128);
+}
+.button:active{
+    box-shadow: inset 6px 6px 10px #bebebe,
+                inset -6px -6px 10px #ffffff;
+    
+}
+.button:hover{
+    background: #d6d6d6;
+} 
+.button.clicked {
+    background: #e0e0e0;
+    /* background: red; Choisis la couleur que tu veux */
+    color: #222;         /* Optionnel : couleur du texte */
+    box-shadow: inset 8px 8px 16px #bebebe,
+                inset -8px -8px 16px #ffffff;
+    font-size: 18px;
+}

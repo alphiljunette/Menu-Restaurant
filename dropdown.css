@@ -1,0 +1,245 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    box-sizing: border-box;
+}
+body {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    background: #eaf3f2;
+    width: 300px;
+    height: 700px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.contact{
+    width: 60%;
+    height: 10rem;
+    /* background-color: rgba(105, 147, 201, 0.87); */
+    text-align: center;
+}
+.lng_dropdown{
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin: 0 auto;
+}
+
+/* Dropdown button style */
+.lng_dropdown_btn{
+    /* background-color: orange; */
+    position: relative;
+    height: 70%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    border-radius: 16px;
+    box-shadow: 6px 6px 12px #cdd0d4,
+                -6px -6px 12px #ffffff;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+/* Hover effect for dropdown button  */
+.lng_dropdown_btn:hover{
+    box-shadow: 5px 5px 10px #cdd0d4,
+                -5px -5px 10px #ffffff;
+}
+
+/* Active state for dropdon button */
+.lng_dropdown_btn.active {
+    box-shadow: inset 4px 4px 8px #cdd0d4,
+                inset -4px -4px 8px #ffffff;
+}
+
+/* Text container inside button */
+.lng_dropdown_btn_text {
+    width: 100%;
+    font-weight: 500;
+    font-size: 11px;
+    color: #222e50;
+    display: flex;
+    align-items: center;
+    background: #f4f7fa;
+    border-radius: 8px;
+    padding: 4px 8px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+.lng_dropdown_btn_text span {
+    flex: 1;
+    min-width: 0;
+}
+
+/* language previeuw circle */
+.lng_previeuw{
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    margin-right: 10px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3),
+                -1px -1px 3px rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease;
+    background: #4a5568;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.lng_dropdown_btn.active .lng_previeuw {
+    transform: scale(1.2);
+}
+
+/* Shimmer effect for color previeuw */
+.lng_previeuw::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, 
+        rgba(255, 255, 255, 0) 40%, 
+        rgba(255, 255, 255, 0.8) 50%, 
+        rgba(255, 255, 255, 0) 60%);
+    transform: rotate(45deg);
+    animation: shimmer 3s infinite;
+}
+
+/* shimmer animation keyframes */
+@keyframes shimmer {
+    0% {
+        transform: rotate(45deg) translateX(-100%);
+    }
+    100% {
+        transform: rotate(45deg) translateX(100%);
+    }
+}
+
+/* dropdown arrow icon */
+.lng_dropdown_btn_icon{
+    width: 12px;
+    height: 12px;
+    border-right: 2px solid #4a5568;
+    border-bottom: 2px solid #4a5568;
+    transform: rotate(45deg);
+    transition: transform 0.3s ease;
+}
+
+/* rotate arrow when dropdown is active */
+.lng_dropdown_btn.active .lng_dropdown_btn_icon {
+    transform: rotate(225deg);
+}
+
+/* Dropdown content container */
+.lng_dropdown_content{
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    max-height: 0;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem; /* Plus d'espace entre les langues */
+    padding: 10px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15), 6px 6px 12px #cdd0d4, -6px -6px 12px #ffffff;
+    z-index: 100;
+}
+.lng_dropdown_content.active {
+    max-height: 300px; /* Adjust based on content */
+    opacity: 1;
+    visibility: visible;
+}
+
+/* individual lng item */
+.lng_item,
+.lng_item.selected {
+    width: 100%;           /* Prend toute la largeur de la colonne */
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    justify-self: stretch;
+    height: 30px;          /* Plus confortable pour image+texte */
+    display: flex;
+    align-items: center;
+    padding: 2px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: rgba(0, 0, 0, 0.02);
+    opacity: 0;
+    transform: scale(0.9);
+}
+
+.lng_dropdown_content.active .lng_item {
+    transform: scale(1);
+    opacity: 1;
+}
+
+/* staggered animation delays for items */
+.lng_dropdown_content.active .lng_item:nth-child(1) {
+    transition-delay: 0.1s;
+}
+.lng_dropdown_content.active .lng_item:nth-child(2) {
+    transition-delay: 0.15s;
+}
+.lng_dropdown_content.active .lng_item:nth-child(3) {
+    transition-delay: 0.2s;
+}
+.lng_dropdown_content.active .lng_item:nth-child(4) {
+    transition-delay: 0.25s;
+}
+/* Hover effect for lng items */
+.lng_item:hover {
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1),
+                -2px -2px 4px rgba(255, 255, 255, 0.5);
+}
+
+.lng_item.selected {
+    background: rgba(0, 0, 0, 0.05);
+    box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.1),
+                inset -2px -2px 4px rgba(255, 255, 255, 0.5);
+}
+
+/* color previeuw circle in items */
+.lng_item_previeuw {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+}
+
+.lng_item_text {
+    font-size: 14px;   /* Plus lisible */
+    color: #4a5568;
+    font-weight: 400;
+}
+.lng_item_previeuw img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+    position: static; /* ← important pour ne pas hériter de absolute */
+}
+.lng_item.selected .lng_item_text {
+    font-weight: 500;
+}
