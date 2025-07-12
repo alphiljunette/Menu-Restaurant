@@ -8,9 +8,20 @@
     <title>Ménu Restaurant</title>
 </head>
 <body>
+    <!-- <div class="im">
+        <img src="./image/fond/Fond Home.jpg" alt="">
+    </div> -->
     <div class="main" class="img">
-        <div>
-            <img class="im" src="./image/fond/Fond Home.jpg" alt="">
+        <div class="section">
+            <div class="slide_bar center">
+                <ul class="center border">
+                    <li class="center"><i class="entrer">Entrer</i></li>
+                    <li class="center"><i class="resistant"></i>Resistant</li>
+                    <li class="center"><i class="desert"></i>Dessert</li>
+                    <li class="center"><i class="boisson"></i>Boisson</li>
+                    <li class="center"><i class="plat_du_jour">Special</i></li>
+                </ul>
+            </div>
         </div>
         <header>
             <div class="tete">
@@ -18,78 +29,92 @@
                     <div class="title">
                         <div class="info">
                             <div class="description">
-                                <h1>Ménu Restaurant</h1>
-                                <h2>Bienvenue au restaurant</h2>
+                                <h1>Bienvenue</h1>
+                                <h3>Vous-êtes à la table</h3>
                             </div>
                             <div class="contact">
                                 <div class="lng_dropdown">
                                     <div class="lng_dropdown_btn">
                                         <div class="lng_dropdown_btn_text">
                                             <div class="lng_previeuw">
-                                                <img  class="lng_item_previeuw" src="" alt="">
+                                                <img class="lng_item_previeuw" src="" alt="">
                                             </div>
                                             <span>Choisisez une langue</span>
                                         </div>
                                         <div class="lng_dropdown_btn_icon"></div>
                                     </div>
                                     <div class="lng_dropdown_content">
-                                    <div class="lng_item selected">
-                                            <div class="lng_item_previeuw"> <img  class="lng_item_previeuw" src="./image/drapeau/téléchargement.png" alt="">                 </div>
+                                        <div class="lng_item selected">
+                                            <div class="lng_item_previeuw">
+                                                <img class="lng_item_previeuw" src="./image/drapeau/téléchargement.png" alt="">
+                                            </div>
                                             <div class="lng_item_text">Malgache</div>
                                         </div>
                                         <div class="lng_item">
-                                            <div class="lng_item_previeuw"> <img class="lng_item_previeuw" src="./image/drapeau/france.png" alt=""></div>
+                                            <div class="lng_item_previeuw">
+                                                <img class="lng_item_previeuw" src="./image/drapeau/france.png" alt="">
+                                            </div>
                                             <div class="lng_item_text">Français</div>
                                         </div>
                                         <div class="lng_item">
-                                            <div class="lng_item_previeuw"> <img class="lng_item_previeuw" src="./image/drapeau/royaume-uni.png" alt=""> </div>
-                                        <div class="lng_item_text">Anglais</div>
-                                        </div>
-                                        <div class="lng_item">
-                                            <div class="lng_item_previeuw"> <img class="lng_item_previeuw" src="./image/drapeau/chine.png" alt=""> </div>
-                                            <div class="lng_item_text">Chinois</div>
+                                            <div class="lng_item_previeuw">
+                                                <img class="lng_item_previeuw" src="./image/drapeau/royaume-uni.png" alt="">
+                                            </div>
+                                            <div class="lng_item_text">Anglais</div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="slide_bar center">
-                        <ul class="center border">
-                            <li class="center"><i class="entrer">Entrer</i></li>
-                            <li class="center"><i class="resistant"></i>Resistant</li>
-                            <li class="center"><i class="desert"></i>Dessert</li>
-                            <li class="center"><i class="boisson"></i>Boisson</li>
-                            <li class="center"><i class="plat_du_jour">Plat du jour</i></li>
-                        </ul>
+                    <div class="container">
+                        <div class="name">
+                        </div>
                     </div>
+                    <footer>
+                        <div class="button">
+                            Achat
+                        </div>
+                        <div class="button">
+                            Rang
+                        </div>
+                    </footer>
                 </div>
-            </div> 
+            </div>
         </header>
-        <div class="container">
-            <div class="name">
-
-            </div>
-        </div>
-        <footer>
-            <div class="button">
-                Achat
-            </div>
-            <div class="button">
-                Rang
-            </div>
-        </footer>
     </div>
-    
+
+    <script>
+        // Effet de sélection pour les boutons
+        document.querySelectorAll('.button').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.button').forEach(b => b.classList.remove('clicked'));
+                this.classList.add('clicked');
+            });
+        });
+
+        // Effet de sélection pour la slidebar
+        document.querySelectorAll('.slide_bar li').forEach(li => {
+            li.addEventListener('click', function() {
+                document.querySelectorAll('.slide_bar li').forEach(item => item.classList.remove('clicked'));
+                this.classList.add('clicked');
+            });
+        });
+
+        // Affichage vertical des lettres (garde ton effet)
+        document.querySelectorAll('li').forEach(li => {
+            const text = li.textContent.trim();
+            li.innerHTML = '';
+            for (const char of text) {
+                const span = document.createElement('span');
+                span.textContent = char;
+                span.style.display = 'inline-block';
+                span.style.transform = 'rotate(90deg)';
+                li.appendChild(span);
+            }
+        });
+    </script>
+<script src="./element.js"></script>
 </body>
 
-<script>
-document.querySelectorAll('.button').forEach(btn => {
-    btn.addEventListener('click', function() {
-        document.querySelectorAll('.button').forEach(b => b.classList.remove('clicked'));
-        this.classList.add('clicked');
-    });
-});
-</script>
-<script src="./element.js"></script>
 </html>
