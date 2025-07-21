@@ -1,0 +1,122 @@
+*{
+    border: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --bg-color:#bebebe;
+    --border-color:#ffffff;
+    font-size: 14px;
+}
+body {
+    background-color: var(--bg-color);
+    font-family: sans-serif;
+}
+
+.carding{
+    width: 140px;
+    height: 140px;
+    background-color: #fff;
+    border-radius: 20px;
+    position: relative;
+    & .m{
+        position: absolute;
+        content: "";
+        height: 15%;
+        /* background-color: blue; */
+        background-color: #fcb045d0;
+        width: 50%;
+        bottom: 0;
+        right: 0;
+        border-top-left-radius: 24px;
+        border-bottom-right-radius: 20px;
+
+        &::before,&::after{
+            position: absolute;
+            content: "";
+            width: 24px;
+            aspect-ratio: 1;
+            background: radial-gradient(circle 20px at top left,
+            #0000 98%,
+            transparent) top left;
+        }
+        &::before{
+            bottom: 0;
+            left: -24px;
+        }
+        &::after{
+            right: 0;
+            top: -24px;
+        }
+    }
+}
+
+.carding img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.cot{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+.plat{
+    border-radius: 20px;
+    box-shadow: inset 6px 6px 10px var(--bg-color),
+                inset -6px -6px 10px var(--border-color);
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    width: 100%;
+    height: 80%;
+}
+
+.plat:active{
+    /* box-shadow: inset 6px 6px 10px var(--bg-color),
+                inset -6px -6px 10px var(--border-color); */
+    box-shadow: 8px 8px 16px var(--bg-color),
+                -8px -8px 16px var(--border-color);
+}
+.plat:hover{
+    background: #d6d6d6;
+} 
+.mini{
+    width:  40%;
+    height: 20%;
+    display: flex;
+    padding-left: 0.60rem;
+
+}
+
+.m > span{
+    /* background-color: var(--border-color); */
+    background-color: transparent;
+    color: #222;
+    font-size: 0.875rem;
+    font-weight: 550;
+    padding: 0.5rem 0.625rem;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.3rem;
+    border-radius: 0.3125rem;
+}
+
+
+.mini > span{
+    font-weight: 550;
+    font-size: 1rem;
+    color: #222;
+    text-transform: uppercase;
+    letter-spacing: 0.05rem;
+    display: flex;
+    align-items: center;
+}

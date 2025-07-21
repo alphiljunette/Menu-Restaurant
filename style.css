@@ -68,6 +68,8 @@ header{
     width: 70%;
 }
 .section {
+    padding: 0;
+    margin: 0;
     height: 100%;
     width: 30%;
     display: flex;
@@ -109,11 +111,7 @@ header{
 }
 .slide_bar {
     border-radius: 10px;
-    background: #e0e0e0;
-    padding: 0;       /* retire le padding pour l'alignement */
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    padding: 0;       
     box-shadow: inset 8px 8px 16px #bebebe,
                 inset -8px -8px 16px #ffffff;
 }
@@ -121,7 +119,6 @@ header{
     width: 10%;
     height: 93%;
     display: flex;
-    align-items: center;
     justify-content: center;
     flex-direction: column;
     overflow-x: auto;
@@ -135,13 +132,8 @@ header{
 .center{
     max-width: 100%;
     min-width: 50%;
-    height: 70%;
-    /* line-height: 110px; */
     text-align: center;
     margin-right: 1px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 .border {
     display: flex;
@@ -214,7 +206,24 @@ footer{
     0 22.9px 30.8px rgba(0, 0, 0, 0.156),
     0 76px 102px rgba(0, 0, 0, 0.21);   
     border-radius: 20px;
-}               
+    overflow-y: auto;
+} 
+.container::-webkit-scrollbar {
+    width: 8px; 
+    background: transparent; 
+}
+
+.container::-webkit-scrollbar-thumb {
+    background: #fcb045; 
+    border-radius: 8px;
+}
+.name {             
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}    
 .button{
     background: #e0e0e0;
     border-radius: 12px;

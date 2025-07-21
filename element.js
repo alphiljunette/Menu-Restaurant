@@ -27,10 +27,26 @@ lngItems.forEach(item => {
     });
 });
 
+// Effet de sélection pour la slidebar + gestion d'index
+document.querySelectorAll('.slide_bar li').forEach(li => {
+    li.addEventListener('click', function() {
+        document.querySelectorAll('.slide_bar li').forEach(item => item.classList.remove('clicked'));
+        this.classList.add('clicked');
+        // Récupère l'index lié à l'élément
+        const index = this.getAttribute('data-index');
+        // Ici tu peux afficher la page liée à cet index
+        // Exemple : showPage(index);
+    });
+});
+
+// Optionnel : afficher la page liée à "Entrer" au chargement
+window.addEventListener('DOMContentLoaded', function() {
+    const firstLi = document.querySelector('.slide_bar li[data-index="0"]');
+    if (firstLi) {
+        // showPage(0); // à remplacer par ta fonction d'affichage
+    }
+});
+
 // close dropdown when clicking outside
 document.addEventListener('click', function(e) {
     if (!lngDropdownBtn.contains(e.target) && !lngDropdownContent.contains(e.target)) {
-        lngDropdownBtn.classList.remove('active');
-        lngDropdownContent.classList.remove('active');
-    }
-});
