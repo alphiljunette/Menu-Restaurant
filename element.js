@@ -1,52 +1,95 @@
-const lngDropdownBtn = document.querySelector('.lng_dropdown_btn');
-const lngDropdownContent = document.querySelector('.lng_dropdown_content');
-const lngItems = document.querySelectorAll('.lng_item');
-const lngPreviewImg = document.querySelector('.lng_previeuw img'); // Sélectionne l'image du preview
+window.addEventListener('DOMContentLoaded', function () {
+    // Dropdown de langue
+    const lngDropdownBtn = document.querySelector('.lng_dropdown_btn');
+    const lngDropdownContent = document.querySelector('.lng_dropdown_content');
+    const lngDropdownBtnIcon = document.querySelector('.lng_dropdown_btn_icon');
+    const lngItems = document.querySelectorAll('.lng_item');
+    const lngPreviewImg = document.querySelector('.lng_previeuw img');
 
-lngDropdownBtn.addEventListener('click', function() {
-    this.classList.toggle('active');
-    lngDropdownContent.classList.toggle('active');
-});
+    if (lngDropdownBtn && lngDropdownContent && lngDropdownBtnIcon) {
+        [lngDropdownBtn, lngDropdownBtnIcon].forEach(el => {
+            el.addEventListener('click', function (e) {
+                lngDropdownBtn.classList.toggle('active');
+                lngDropdownContent.classList.toggle('active');
+                e.stopPropagation();
+            });
+        });
 
-lngItems.forEach(item => {
-    item.addEventListener('click', function() {
-        lngItems.forEach(i => i.classList.remove('selected'));
-        this.classList.add('selected');
+        lngItems.forEach(item => {
+            item.addEventListener('click', function () {
+                lngItems.forEach(i => i.classList.remove('selected'));
+                this.classList.add('selected');
 
-        // Récupère le src de l'image sélectionnée
-        const selectedImg = this.querySelector('.lng_item_previeuw img').src;
-        // Met à jour l'image du preview
-        lngPreviewImg.src = selectedImg;
+                const selectedImg = this.querySelector('.lng_item_previeuw img').src;
+                lngPreviewImg.src = selectedImg;
 
-        // Met à jour le texte
-        const selectedText = this.querySelector('.lng_item_text').textContent;
-        document.querySelector('.lng_dropdown_btn_text span').textContent = selectedText;
+                const selectedText = this.querySelector('.lng_item_text').textContent;
+                document.querySelector('.lng_dropdown_btn_text span').textContent = selectedText;
 
-        lngDropdownBtn.classList.remove('active');
-        lngDropdownContent.classList.remove('active');
-    });
-});
+                lngDropdownBtn.classList.remove('active');
+                lngDropdownContent.classList.remove('active');
+            });
+        });
 
-// Effet de sélection pour la slidebar + gestion d'index
-document.querySelectorAll('.slide_bar li').forEach(li => {
-    li.addEventListener('click', function() {
-        document.querySelectorAll('.slide_bar li').forEach(item => item.classList.remove('clicked'));
-        this.classList.add('clicked');
-        // Récupère l'index lié à l'élément
-        const index = this.getAttribute('data-index');
-        // Ici tu peux afficher la page liée à cet index
-        // Exemple : showPage(index);
-    });
-});
-
-// Optionnel : afficher la page liée à "Entrer" au chargement
-window.addEventListener('DOMContentLoaded', function() {
-    const firstLi = document.querySelector('.slide_bar li[data-index="0"]');
-    if (firstLi) {
-        // showPage(0); // à remplacer par ta fonction d'affichage
+        // Fermer le dropdown si clic à l’extérieur
+        document.addEventListener('click', function (e) {
+            if (
+                !lngDropdownBtn.contains(e.target) &&
+                !lngDropdownContent.contains(e.target) &&
+                !lngDropdownBtnIcon.contains(e.target)
+            ) {
+                lngDropdownBtn.classList.remove('active');
+                lngDropdownContent.classList.remove('active');
+            }
+        });
     }
-});
 
-// close dropdown when clicking outside
-document.addEventListener('click', function(e) {
-    if (!lngDropdownBtn.contains(e.target) && !lngDropdownContent.contains(e.target)) {
+    // --- Appliquer la sélection depuis sessionStorage ---
+    const savedIndex = sessionStorage.getItem('selectedIndex');
+    if (savedIndex !== null) {
+        const activeLi = document.querySelector('.slide_bar .li[data-index="' + savedIndex + '"]');
+        if (activeLi) {
+            document.querySelectorAll('.slide_bar .li').forEach(li => li.classList.remove('clicked'));
+            activeLi.classList.add('clicked');
+        }
+    } else {
+        // « Entrer » par défaut
+        const defaultLi = document.querySelector('.slide_bar .li[data-index="0"]');
+        if (defaultLi) defaultLi.classList.add('clicked');
+    }
+
+    // --- Sauvegarder l’index au clic (mousedown) ---
+    document.querySelectorAll('.slide_bar .li').forEach(li => {
+        const link = li.querySelector('a');
+        if (link) {
+            link.addEventListener('mousedown', function () {
+                sessionStorage.setItem('selectedIndex', li.getAttribute('data-index'));
+            });
+        }
+    });
+
+
+    // Effet de sélection pour les boutons en bas
+    document.querySelectorAll('.button').forEach(btn => {
+        btn.addEventListener('click', function () {
+            document.querySelectorAll('.button').forEach(b => b.classList.remove('clicked'));
+            this.classList.add('clicked');
+        });
+    });
+
+    //  Transformation verticale des lettres dans le menu (li > a)
+    document.querySelectorAll('.li').forEach(li => {
+        const a = li.querySelector('a');
+        if (a) {
+            const text = a.textContent.trim();
+            a.innerHTML = '';
+            for (const char of text) {
+                const span = document.createElement('span');
+                span.textContent = char;
+                span.style.display = 'inline-block';
+                span.style.transform = 'rotate(90deg)';
+                a.appendChild(span);
+            }
+        }
+    });
+});

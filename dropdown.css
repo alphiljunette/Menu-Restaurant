@@ -1,7 +1,10 @@
 *{
     margin: 0;
+    border: 0;
+    padding: 0;
     font-family: sans-serif;
     box-sizing: border-box;
+    
 }
 body {
     top: 50%;
@@ -9,8 +12,8 @@ body {
     transform: translate(-50%, -50%);
     position: absolute;
     background: #eaf3f2;
-    width: 300px;
-    height: 700px;
+    width: 100vw;
+    height: 100vh;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -216,8 +219,8 @@ body {
 
 /* color previeuw circle in items */
 .lng_item_previeuw {
-    width: 30px;
-    height: 24px;
+    width: 32px;
+    height: 26px;
     border-radius: 50%;
     overflow: hidden;
     display: flex;
