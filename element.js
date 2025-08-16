@@ -77,6 +77,13 @@ window.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+    // Place ce script juste avant </body> ou dans un fichier JS lié
+    document.querySelectorAll('.li').forEach(item => {
+        item.addEventListener('click', function() {
+            document.querySelectorAll('.li').forEach(li => li.classList.remove('clicked'));
+            this.classList.add('clicked');
+        });
+    });
     //  Transformation verticale des lettres dans le menu (li > a)
     document.querySelectorAll('.li').forEach(li => {
         const a = li.querySelector('a');
@@ -91,5 +98,12 @@ window.addEventListener('DOMContentLoaded', function () {
                 a.appendChild(span);
             }
         }
+    });
+
+    // Effet de bascule pour les cartes
+    document.querySelectorAll('.card').forEach(card => {
+        card.addEventListener('click', function() {
+            this.classList.toggle('active');
+        });
     });
 });

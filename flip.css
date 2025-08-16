@@ -1,0 +1,51 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    width: 400px;
+    height: 600px;
+}
+
+.container {
+    display: flex;
+    gap: 40px;
+}
+
+.card {
+    position: relative;
+    width: 300px;
+    transition: 1s;
+}
+
+.card::before {
+    content: "";
+    display: block;
+    padding-bottom: 150%;
+}
+
+.card_bacg {
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    background-size: 400px;
+    filter: brightness(0.8) saturate(1.2) contrast(1.2);
+    transform: scale(0.9) translateZ(0);
+    transform-origin: bottom;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    background-position: center;
+}
+
+/* Lorsqu'on survole une carte */
+.card:hover .card_bacg {
+    transform: scale(1.1) translateZ(0);
+}
+
+/* Effet de focus sur une seule carte : les autres se floutent */
+.container:hover .card:not(:hover) .card_bacg {
+    filter: brightness(0.4) saturate(0) contrast(1.2) blur(10px);
+    transform: scale(0.9) translateZ(0);
+}
